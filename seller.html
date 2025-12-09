@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Seller Portal — Caprock</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="container narrow">
+    <header class="top small">
+      <div>
+        <h1 class="brand">Caprock — Seller Portal</h1>
+        <p class="tag muted">Sign in to create a sale</p>
+      </div>
+    </header>
+
+    <!-- AUTH -->
+    <section id="auth" class="card">
+      <h2>Authorize</h2>
+      <div class="form-grid">
+        <label>Full name <input id="auth-name" /></label>
+        <label>Auth code <input id="auth-code" /></label>
+      </div>
+      <div class="form-row">
+        <button id="auth-btn" class="btn primary">Unlock</button>
+        <button id="auth-clear" class="btn outline">Clear</button>
+      </div>
+      <p id="auth-msg" class="muted small"></p>
+    </section>
+
+    <!-- SELLER UI -->
+    <section id="seller-ui" class="card hidden">
+      <div class="row-between">
+        <div>
+          <h2 id="welcome">Welcome</h2>
+          <p id="access-exp" class="muted small"></p>
+        </div>
+        <button id="signout" class="btn outline">Sign out</button>
+      </div>
+
+      <hr/>
+
+      <!-- Create sale -->
+      <div id="create-sale" class="stack">
+        <h3>Create Sale</h3>
+        <div class="form-grid">
+          <label>Business name <input id="business-name"/></label>
+          <label>Sale name <input id="sale-name"/></label>
+          <label>Logo (optional) <input id="sale-logo" type="file" accept="image/*"/></label>
+          <label>Description <textarea id="sale-desc"></textarea></label>
+        </div>
+
+        <div class="form-grid two-col">
+          <label>Number of lots
+            <select id="num-lots"><option>1</option><option>2</option><option>4</option><option>6</option><option>8</option><option>12</option></select>
+          </label>
+
+          <label>Global prices?
+            <select id="global-prices"><option value="yes">Yes</option><option value="no">No</option></select>
+          </label>
+        </div>
+
+        <div id="global-pricing" class="form-grid">
+          <label>Global opening price <input id="global-open" type="number" step="0.01"/></label>
+          <label>Global increment <input id="global-inc" type="number" step="0.01"/></label>
+        </div>
+
+        <div class="form-grid two-col">
+          <label>Start <input id="start-local" type="datetime-local"/></label>
+          <label>Start TZ
+            <select id="start-tz"><option>America/Chicago</option><option>UTC</option></select>
+          </label>
+
+          <label>End <input id="end-local" type="datetime-local"/></label>
+          <label>End TZ
+            <select id="end-tz"><option>America/Chicago</option><option>UTC</option></select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <button id="create-sale-btn" class="btn primary">Create Sale</button>
+        </div>
+        <p id="sale-msg" class="muted small"></p>
+      </div>
+
+      <!-- Lot builder -->
+      <section id="lot-builder" class="hidden">
+        <h3>Lot entry (<span id="lot-current">1</span> / <span id="lot-total">1</span>)</h3>
+        <form id="lot-form" class="form-grid">
+          <label>Ear notch <input id="lot-ear"/></label>
+          <label>Photo <input id="lot-photo" type="file" accept="image/*"/></label>
+          <label>Pedigree <textarea id="lot-pedigree"></textarea></label>
+          <label>Breed <input id="lot-breed"/></label>
+          <label id="per-start">Starting bid <input id="lot-start" type="number" step="0.01"/></label>
+          <label id="per-inc">Bid increment <input id="lot-inc" type="number" step="0.01"/></label>
+        </form>
+
+        <div class="form-row">
+          <button id="save-lot" class="btn">Save Lot</button>
+          <button id="finish-lots" class="btn outline">Finish Early</button>
+        </div>
+        <p id="lot-msg" class="muted small"></p>
+      </section>
+
+      <!-- Dashboard -->
+      <section id="dashboard" class="hidden">
+        <div class="row-between">
+          <div>
+            <h3 id="dash-title"></h3>
+            <p id="dash-dates" class="muted small"></p>
+          </div>
+          <div class="controls">
+            <button id="generate-link" class="btn share">Generate Live Link</button>
+          </div>
+        </div>
+
+        <p class="muted small">The sale will automatically begin and end at your selected date and times.</p>
+        <p class="muted small">Live link: <code id="live-url">—</code></p>
+
+        <div id="lots-grid" class="grid-cards"></div>
+      </section>
+    </section>
+
+    <footer class="footer muted">© Caprock Livestock Exchange</footer>
+  </main>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/seller.js"></script>
+</body>
+</html>
