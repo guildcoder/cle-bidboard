@@ -79,3 +79,15 @@ function attachBidHandlers(lotId) {
         }
     });
 }
+
+onSnapshot(collection(db, "sales", currentSaleId, "lots"), (snapshot) => {
+    lots = [];
+    snapshot.forEach(doc => {
+        lots.push({ id: doc.id, ...doc.data() });
+    });
+
+    renderLots(lots);
+
+    lots.forEach(l => attachBidHandlers(l.id));
+});
+
