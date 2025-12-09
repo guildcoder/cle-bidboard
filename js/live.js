@@ -37,6 +37,7 @@ async function initLive(){
         <img class="lot-photo" src="${d.photoUrl || '../assets/placeholder.png'}" />
         <div class="lot-meta"><div>Breed: ${d.breed || ''}</div><div>Pedigree: ${d.pedigree || ''}</div></div>
         <div class="lot-foot"><strong>${d.currentBid ? '$'+d.currentBid : 'Starting Bid'}</strong><span class="muted">${d.winningBidder||''}</span></div>
+        <button id="bid-${lot.id}" class="bid-button">Place Bid</button>
       `;
       // enlarge
       card.querySelector('img').addEventListener('click', ()=> openModal(d.photoUrl || '../assets/placeholder.png'));
