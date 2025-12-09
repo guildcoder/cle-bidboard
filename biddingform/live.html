@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Live — Caprock</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <main class="container narrow">
+    <header class="top small">
+      <div>
+        <h1 class="brand" id="sale-brand">Caprock — Live Board</h1>
+        <p id="sale-sub" class="muted small"></p>
+      </div>
+      <div>
+        <button id="get-number" class="btn outline">Get Bidding Number</button>
+      </div>
+    </header>
+
+    <section id="sale-head" class="card">
+      <h2 id="sale-name">Loading sale…</h2>
+      <p id="sale-dates" class="muted small"></p>
+      <p id="sale-desc" class="muted"></p>
+    </section>
+
+    <section id="lots" class="grid-cards"></section>
+
+    <!-- Photo modal -->
+    <div id="photo-modal" class="modal hidden"><div class="modal-inner card"><img id="photo-enlarge" alt="lot photo"><div class="modal-actions"><button id="close-photo" class="btn">Close</button></div></div></div>
+
+    <footer class="footer muted">© Caprock</footer>
+  </main>
+
+  <script type="module" src="../js/firebase.js"></script>
+  <script type="module" src="../js/live.js"></script>
+</body>
+</html>
