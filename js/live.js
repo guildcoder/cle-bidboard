@@ -57,3 +57,24 @@ function openModal(src){
 }
 
 document.addEventListener('DOMContentLoaded', initLive);
+// --- HANDLE BID BUTTON ---
+import { placeBid } from "./firebase.js";
+
+function attachBidHandlers(lotId) {
+    const btn = document.querySelector(`#bid-${lotId}`);
+
+    btn.addEventListener("click", async () => {
+        const bidderName = prompt("Enter your name:");
+        if (!bidderName) return;
+
+        const bidAmount = Number(prompt("Enter your bid amount:"));
+        if (!bidAmount) return;
+
+        try {
+            await placeBid(currentSaleId, lotId, bidderName, bidAmount);
+            alert("Bid placed!");
+        } catch (err) {
+            alert("Error: " + err);
+        }
+    });
+}
